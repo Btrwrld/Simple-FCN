@@ -33,6 +33,7 @@ function plot_maps(model,X,y,numclasses)
   cmap = [0,0,0; 1,0,0; 0,0,1; 0.5,0,0.5; 0,1,0; 0,0.85,0.85; 0.5,0.5,0.0];
   wimg=ind2rgb(winner,[0,0,0;cmap]);
   imshow(wimg);
+  title("Winner Classes")
    
   ## A figure with the weighted winners
   figure();
