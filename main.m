@@ -5,12 +5,12 @@ close;
 # Define parameters
 ds_size = 1000;
 test_val_size = 100;
-num_clases = 6;
+num_clases = 4;
 epochs = 120;
 batch_size = 8;
 lr = 0.01;
 optim = "dg"; # cg(recommended lr 0.01) and dg available
-shape = "radial";
+shape = "vertical";
 
 train(shape, num_clases, batch_size, ds_size, lr, epochs, optim, false);
 

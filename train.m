@@ -10,14 +10,14 @@ function train(shape="vertical", num_classes=3, batch_size=8, ds_size=1000, lr =
         if(size(ws)(1)==3)
             w1strfile = ws{1};
             w2strfile = ws{2};
-            w3strfile = ws{3};
+
             W1 = csvread(w1strfile);
             W2 = csvread(w2strfile);
-            W3 = csvread(w3strfile);
+
 
             model.layers{1}.weights = W1;
             model.layers{2}.weights = W2;
-            model.layers{3}.weights = W3;
+
         endif
     endif
 
@@ -34,5 +34,5 @@ function train(shape="vertical", num_classes=3, batch_size=8, ds_size=1000, lr =
     # Write the weights in the associated files
     dlmwrite (strcat('./weights/',shape,'_ds_size:', num2str(ds_size),'_classes:',num2str(num_classes),'_W1.csv'), model.layers{1}.weights, ",");
     dlmwrite (strcat('./weights/',shape,'_ds_size:', num2str(ds_size),'_classes:',num2str(num_classes),'_W2.csv'), model.layers{2}.weights, ",");
-    dlmwrite (strcat('./weights/',shape,'_ds_size:', num2str(ds_size),'_classes:',num2str(num_classes),'_W3.csv'), model.layers{3}.weights, ",");
+
 endfunction
