@@ -2,13 +2,13 @@
 Introducción al Reconocimiento de Patrones
 -------------
 # Tecnológico de Costa Rica
-Escuela de Ingeniería Electrónica
-Prof: Pablo Alvarado Moya, Ph.D.
-Ignacio Mora Jiménez, carné 2016133524
-Erick Muñoz Alvarado, carné 2016130685
-Allan Navarro Brenes, carné 200943530
-Jorge Rodríguez Esquivel, carné 2013389899
-##### 30 de Setiembre, 2019
+Escuela de Ingeniería Electrónica  
+Prof: Pablo Alvarado Moya, Ph.D.  
+Ignacio Mora Jiménez, carné 2016133524  
+Erick Muñoz Alvarado, carné 2016130685  
+Allan Navarro Brenes, carné 200943530  
+Jorge Rodríguez Esquivel, carné 2013389899  
+30 de Setiembre, 2019
 
 
 ### Requirements
