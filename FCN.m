@@ -23,8 +23,8 @@ classdef FCN
             fcn.func = Function();
 
             # Add layers
-            fcn.layers{1} = Layer(input_size , 10          , fcn.func.ReLu, optim);
-            fcn.layers{2} = Layer( 10         , 10          , fcn.func.ReLu, optim);
+            fcn.layers{1} = Layer(input_size , 10          , fcn.func.Sigmoid, optim);
+            fcn.layers{2} = Layer( 10         , 10          , fcn.func.Sigmoid, optim);
             fcn.layers{3} = Layer( 10         , output_size , fcn.func.Softmax, optim);
 
             # Set the target function as least squares
