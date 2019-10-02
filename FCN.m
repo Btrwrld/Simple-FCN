@@ -23,9 +23,9 @@ classdef FCN
             fcn.func = Function();
 
             # Add layers
-            fcn.layers{1} = Layer(input_size , 5          , fcn.func.Sigmoid, optim);
-            fcn.layers{2} = Layer( 5         , 8          , fcn.func.Sigmoid, optim);
-            fcn.layers{3} = Layer( 8         , output_size , fcn.func.Softmax, optim);
+            fcn.layers{1} = Layer(input_size , 10          , fcn.func.ReLu, optim);
+            fcn.layers{2} = Layer( 10         , 10          , fcn.func.ReLu, optim);
+            fcn.layers{3} = Layer( 10         , output_size , fcn.func.Softmax, optim);
 
             # Set the target function as least squares
             fcn.target = fcn.func.LeastSquares;
@@ -44,6 +44,7 @@ classdef FCN
 
             # Define the forward values container and concatenate the bias
             forward_values = {};
+
             partial_forward_values{1} = [X 1];
 
             # Calc and store the forward values of the net
@@ -84,6 +85,9 @@ classdef FCN
             # Remove these rows from training data
             X( val_rows, : ) = [];
             Y( val_rows, : ) = [];
+
+            figure(1);
+            plot_data(X, Y);
 
 
             # Set the model to training mode to store forward prop values
@@ -130,6 +134,23 @@ classdef FCN
                 err = [err; e sum(e)];
 
                 fprintf("Epoch %i\t Mean error %f\n", i, sum(e));
+                figure(2, "name", strcat("Loss evolutiontes for learning rate: ", num2str(lr)));
+                #Plot error
+                colors  = ['k','r','b','m','g','c','y'];
+                c = 0;
+                hold on;
+                l = {};
+                for i = 1:(size(err)(2) - 1)
+
+                    plot(ep, err(:, i), colors(i), "linewidth", 3);
+                    l{i} = strcat("Error for class  " , int2str(i));
+                    c = i;
+                endfor
+                c += 1;
+                l{c} = "Mean error";
+                plot(ep, err(:, end), colors(c),"linewidth", 3);
+                legend (l, "location", "northeastoutside");
+                refresh();
 
 
 

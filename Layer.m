@@ -18,6 +18,7 @@ classdef Layer
 
         # Constructor
         function layer = Layer(input_size, output_size, funct, optim)
+            display(optim);
 
             # Store the number of neurons per layer
             layer.neurons = input_size + 1;
