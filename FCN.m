@@ -67,7 +67,7 @@ classdef FCN
 
         function [fcn validation_set] = train(model, X, Y, epochs, batch_size, lr)
 
-            # usage train(X,Y, epochs)
+            # usage train(X,Y, epochs, batch_size, lr)
             #
             # This function takes the training set X where each column is a sample
             # and it's respective targets
@@ -75,6 +75,8 @@ classdef FCN
             # X: training set holding on the rows the input data
             # Y: labels of the training set as a column vector
             # epochs: Number of epochs needed to train
+            # batch_size: size of training batch
+            # lr: learning rate
 
 
             # Define a validation set as a ~30% of the input data
@@ -87,6 +89,7 @@ classdef FCN
 
             figure(1);
             plot_data(X, Y);
+            title("Training Data Set");
 
 
             # Set the model to training mode to store forward prop values
@@ -133,7 +136,7 @@ classdef FCN
                 err = [err; e sum(e)];
 
                 fprintf("Epoch %i\t Mean error %f\n", i, sum(e));
-                figure(2, "name", strcat("Loss evolutiontes for learning rate: ", num2str(lr)));
+                figure(2, "name", strcat("Loss evolution for learning rate: ", num2str(lr)));
                 #Plot error
                 colors  = ['k','r','b','m','g','c','y'];
                 c = 0;
@@ -179,7 +182,7 @@ classdef FCN
 
         function [fcn training_set targets] = gradtarget(model, X, Y, batch_size = 1e12, lr)
 
-            # usage gradtarget(W1, W2, X, Y, batchSize)
+            # usage gradtarget(model, X, Y, batchSize)
             #
             # This function evaluates the gradient of the target function on
             # the model layers
@@ -188,6 +191,7 @@ classdef FCN
             # equal to 1
             # Y :labels of the training set
             # batchSize: Size of the batch used to compute the gradient
+            # lr: learning rate
 
 
             # If the batch size is grater than the amount of samples(num rows) then

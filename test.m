@@ -1,3 +1,13 @@
+#!/usr/bin/octave-cli
+
+# usage test(shape, ds_size, numdata_test, num_classes)
+# 
+# This functions tests the neural network using previously trained weights and shows heat maps about the predictions
+# 
+# shape: shape to test. Default = "vertical"
+# ds_size: size of the data set that the model was trained with. Default = 1000
+# numdata_test: size of the testing data set. Default = 128
+# num_classes: number of classes that the model was trained with. Default = 3
 
 function test(shape="vertical",ds_size = 1000,  numdata_test=128, num_classes = 3)
     pkg load statistics;
@@ -26,15 +36,15 @@ function test(shape="vertical",ds_size = 1000,  numdata_test=128, num_classes = 
         endfor
 
   
-        # Filter
+        # Filter Y
         Y_norm = zeros(rows(Y_pred), columns(Y_pred));
         for(i=[1:rows(Y_pred)])
             [m, mi] = max(Y_pred(i,:));
             Y_norm(i,mi) = 1;
         endfor
         
-        #live plotting during training
-        figure(1, "name", "Prediction")
+
+        figure("name", "Testing Set")
         plot_data(X,Y_norm);
         
         confusion_matrix(Y, Y_norm);

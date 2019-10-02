@@ -5,7 +5,7 @@
 # This functions trains the neural network and stores the result in the weights folder
 # 
 # shape: shape to train with. Default = "vertical"
-# num_classes: number of classes to generate. Default = 3
+# num_classes: number of classes to generate. Default = 3, Max = 6 (Due to graphing limitations)
 # batchSize: size of batch for the  gradient descent. Default = 8
 # ds_size: size of the data set to generate. Default = 1000
 # lr: learing rate for the weight calculation. Defaul = 0.01
@@ -19,6 +19,8 @@ function train(shape="vertical", num_classes=3, batch_size=8, ds_size=1000, lr =
     close;
 
     model = FCN(2, num_classes, optim);
+
+    # Load the previously trained weights to the model if need be
 	if(keep_training)
         ws = glob(["./weights/" strcat(shape,  "*", num2str(ds_size), "*",num2str(num_classes)), "_*"]);
         if(size(ws)(1)==3)
@@ -44,7 +46,7 @@ function train(shape="vertical", num_classes=3, batch_size=8, ds_size=1000, lr =
     [model, val_set] = model.train(training_samples, training_targets, epochs, batch_size, lr);
 
     # Write the weights to the associated files
-    dlmwrite (strcat('./weights/',shape,'_ds_size:', num2str(ds_size),'_classes:',num2str(num_classes),'_W1.csv'), model.layers{1}.weights, ",");
-    dlmwrite (strcat('./weights/',shape,'_ds_size:', num2str(ds_size),'_classes:',num2str(num_classes),'_W2.csv'), model.layers{2}.weights, ",");
+    dlmwrite (strcat('./weights/',shape,'_ds_size', num2str(ds_size),'_classes',num2str(num_classes),'_W1.csv'), model.layers{1}.weights, ",");
+    dlmwrite (strcat('./weights/',shape,'_ds_size', num2str(ds_size),'_classes',num2str(num_classes),'_W2.csv'), model.layers{2}.weights, ",");
 
 endfunction

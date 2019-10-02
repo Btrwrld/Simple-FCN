@@ -20,7 +20,6 @@ function plot_data(X,Y)
     # Prepare the style recycling the markers and colors
     style=strcat(markers(mod(i-1,length(markers))+1),
 		 colors(mod(i-1,length(colors))+1));
-    # 
     i0=idx(:,i);
     i0(i0==0)=[]; # remove all zeros from the vector
     
