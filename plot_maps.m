@@ -1,21 +1,14 @@
 function plot_maps(model,X,y,numclasses)
 
-
-  ####################################################
-  ##           Set Drawing Parameters               ##
-  ####################################################
-
+  # Save colors and markers for the plots
   colors={'k','r','b','m','g','c','y'};
   markers={'+','o','*','x','s','d','^','v','>','<'};
-
-  ####################################################
-  ##              Predict with model                ##
-  ####################################################
 
   ## Create an image, where the color of the pixel is created by
   ## combining a bunch of colors representing each class, and the
   ## mixture is made with the probabilities.
 
+  # Plot for each pixel, the color weighted by the probability that it is in fact that color
   x=linspace(-1,1,256);
   [GX,GY]=meshgrid(x,x);
   FX = [GX(:) GY(:)];
@@ -26,13 +19,12 @@ function plot_maps(model,X,y,numclasses)
             FZ = [FZ; Y_curr];
 
   endfor
-  % FZ = model.predict(FX);
 
   # Normalize FZ
   FZ = FZ ./ sum(FZ,2);
   FZ = FZ';
  
-  ## A figure with the winners
+  # The figure with the winner class per pixel
   [maxprob,maxk]=max(FZ);
    
   figure("name","Winner classes");
@@ -53,10 +45,10 @@ function plot_maps(model,X,y,numclasses)
    
   mixed = flip(cat(3,redChnl,greenChnl,blueChnl),1);
   imshow(mixed);
-  title("Classes by probability.");
+  title("Weighted winner classes");
    
    
-  ## Show the output probability for each class separately
+  # Plot the probability for each individual class
   for (kk=[1:numclasses])
     figure(); hold off;
     x=-1:0.05:1;
@@ -75,16 +67,14 @@ function plot_maps(model,X,y,numclasses)
     daspect([1,1,1]);
     hold on;
 
-    # Offset surface z data so the scatter can be on top.
     z = get(h,'ZData');
     set(h,'ZData',z-10);
     
     P = X(y(:,kk)==1,:);
-    #scatter(X(y(:,kk)==1,1),X(y(:,kk)==1,2),[],colors{kk},markers{kk});
+
     scatter3(P(:,1), P(:,2),y(y(:,kk)==1)/kk,
            [],colors{kk},'d',"filled");
-    #scatter3(X(y(:,kk)!=1,1),X(y(:,kk)!=1,2),y(y(:,kk)!=1)*0,
-             #[],"k","+","filled");
+
    
     xlabel("x");
     ylabel("y");
