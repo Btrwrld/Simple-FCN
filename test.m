@@ -20,7 +20,7 @@ function test(shape="vertical",ds_size = 1000,  numdata_test=128, num_classes = 
         Y_pred = [];
 
         for(i=[1:rows(X)])
-            [Y_curr, fwd]=model.predict(X(i, :))
+            [Y_curr, fwd]=model.predict(X(i, :));
             Y_pred = [Y_pred; Y_curr];
 
         endfor

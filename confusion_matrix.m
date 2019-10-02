@@ -1,4 +1,6 @@
 function matrix=confusion_matrix(Y_real, Y_pred)
+  size(Y_real)
+  size(Y_pred)
    # Number of classes and data 
    num_classes = columns(Y_real);
    data_amount = rows(Y_real);
