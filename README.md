@@ -12,7 +12,7 @@ Jorge Rodríguez Esquivel, carné 2013389899
 
 
 ### Requirements
-* Octave 4.4.1 or greater installed.
+* Octave 4.4.1 or greater installed with the statistics and optim packages.
 
 ### Execution instructions
 
